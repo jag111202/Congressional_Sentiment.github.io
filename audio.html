@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 with Local CSV Comparison</title>
+</head>
+<body>
+  <svg></svg>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <div id="graph-container"></div>
+  <script>
+    // Define your data sets here as lists of objects
+    const trumpSet = [
+      { x: 187.4026607818358, y: -1},
+      { x: 218.51920967291707, y: 35.54096337767961 },
+      { x: 208.31955396451815, y: 24.67319168271325 },
+      { x: 239.7267587457277, y: 38.09679629284887 },
+      { x: 261.6139099530446, y: 48.20692830869571},
+      { x: 228.68104765954988, y: 36.596445419551934 },
+      { x: 203.2152658236068, y: 41.96084335075536 },
+      { x: 243.77727215511567, y: 37.72670312067008 },
+      { x: 226.54753009944653, y: 29.915688456789784},
+      { x: 266.0917415606617, y: 37.13005059570301 },
+      { x: 245.99212161436185, y: 51.40352852858305 },
+      { x: 196.70379883938745, y: 46.19604302205123}
+    ];
+    const clintonSet = [
+      { x: 211.8459458, y: -1 },
+      { x: 209.3308782, y: 44.0656386 },
+      { x: 200.1784106, y: 49.09116925 },
+      { x: 179.6679671, y: 42.91995521 },
+      { x: 161.7838649, y: 28.78980262 },
+      { x: 225.6744619, y: 57.64981417 },
+      { x: 234.4874654, y: 46.94574439 },
+      { x: 199.5601348, y: 32.81227686 }
+    ];
+
+    var margin = {top: 10, right: 30, bottom: 30, left: 60},
+      width = 460 - margin.left - margin.right,
+      height = 400 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#graph-container")
+      .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    
+    /*function visualizeScatterGraph(set1, set2, svg) {
+      const colNames = [set1[0].constructor.name.slice(6), set2[0].constructor.name.slice(6)];
+      const groupedSets = set1.concat(set2);
+
+      const maxX = d3.max(groupedSets, (d) => d.x);
+      const maxY = d3.max(groupedSets, (d) => d.y);
+
+      const xScale = d3.scaleBand()
+        .domain(colNames)
+        .range([0, width])
+        .padding([0.2]);
+      const yScale = d3.scaleLinear()
+        .domain([0, Math.max(maxX, maxY)])
+        .range([height, 0]);
+
+      const g = svg.append("g")
+        .attr("transform", 'translate(${margin.left}, ${margin.top})');
+      
+      const offset = width / (colNames.length * 2);
+
+      g.selectAll(".data-point")
+        .data(groupedSets)
+        .enter()
+        .append("circle")
+        .attr("cx", (d) => { return xScale(d.constructor.name.slice(6)); } )
+        .attr("cy", (d) => { return yScale(d.y); } )
+        .attr("r", 5)
+        .attr("fill", (d, i) => i < set1.length ? "blue" : "orange");
+      
+      g.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", 'translate(0, ${height})')
+        .call(d3.axisBottom(xScale));
+      
+      g.append("g")
+        .attr("class", "y-axis")
+        .call(d3.axisLeft(yScale));
+    }*/
+
+    function visualizeStackedDataPoints(data1, data2, svgElement, xAxisLabel, yAxisLabel) {
+      // Define margins and chart dimensions
+      const margin = { top: 20, right: 30, bottom: 50, left: 60 }; // Adjust margins as needed
+      const width = svgElement.attr("width") - margin.left - margin.right;
+      const height = svgElement.attr("height") - margin.top - margin.bottom;
+
+      // Extract dataset names from variable names
+      const dataPointNames = [data1[0].constructor.name.slice(6), data2[0].constructor.name.slice(6)];  
+
+      // Combine data sets for easier processing
+      const combinedData = data1.slice(1).concat(data2.slice(1));
+
+      // Get maximum y value for scaling (assuming y represents heights)
+      const maxY = d3.max(combinedData, (d) => d.y);
+
+      // Extract x values for y-axis scale
+      const allXValues = combinedData.map(d => d.x);
+      const minY = d3.min(allXValues);
+      const maxYAxis = d3.max(allXValues);
+
+      // Define scales (swap x and y for desired orientation)
+      const xScale = d3.scaleBand()  // Use band scale for x-axis (datasets)
+        .domain(dataPointNames)
+        .range([0, width])
+        .padding(0.2);
+
+      const yScale = d3.scaleLinear() // Use linear scale for y-axis (values)
+        .domain([minY - 10, maxYAxis])
+        .range([height, 0]);
+
+      // Create a group element for easier manipulation
+      const g = svgElement.append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+      // Add data points for each data set with a slight offset for separation
+      const offset = xScale.bandwidth() / 2;  // Calculate offset for separation
+
+      g.append("line")
+        .attr("x1", xScale(dataPointNames[0]) + 0.25 * offset)
+        .attr("y1", yScale(data1[0].x))
+        .attr("x2", xScale(dataPointNames[0]) + 0.75 * offset)
+        .attr("y2", yScale(data1[0].x))
+        .attr("stroke", "blue")
+        .attr("stroke-dasharray", "5,5");
+
+      g.append("line")
+        .attr("x1", xScale(dataPointNames[1]) + 1.75 * offset)
+        .attr("y1", yScale(data2[0].x))
+        .attr("x2", xScale(dataPointNames[1]) + 2.25 * offset)
+        .attr("y2", yScale(data2[0].x))
+        .attr("stroke", "orange")
+        .attr("stroke-dasharray", "5,5");
+
+      g.selectAll(".data-point")
+        .data(combinedData)
+        .enter()
+        .append("circle")
+        .attr("class", "data-point")
+        .attr("cx", (d, i) => i < (data1.length - 1) ? xScale(dataPointNames[0]) + 0.5 * offset : xScale(dataPointNames[1]) + 2 * offset)  // Position based on dataset
+        .attr("cy", (d) => yScale(d.x))
+        .attr("r", 5) // Adjust radius as needed
+        .attr("fill", (d, i) => i < (data1.length - 1) ? "blue" : "orange"); // Adjust colors
+
+      // Add y-axis labels (now representing heights) with tick marks
+      g.append("g")
+        .attr("class", "y-axis")
+        .call(d3.axisLeft(yScale));
+
+      // Add y-axis label
+      g.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text(yAxisLabel);
+
+      // Add x-axis labels (now representing categories) with tick marks
+      g.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0, ${height})`)
+        .call(d3.axisBottom(xScale));
+
+      // Add x-axis label
+      g.append("text")
+        .attr("transform",
+              "translate(" + (width / 2) + " ," +
+                            (height + margin.top + 20) + ")")
+        .style("text-anchor", "middle")
+        .text(xAxisLabel);
+    }
+
+
+    visualizeStackedDataPoints(trumpSet, clintonSet, svg, "Trump vs Clinton", "Pitch Frequency, F0, in (Hz)");
+  </script>
+</body>
+</html>

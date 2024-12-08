@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>African American Key Words and Hate Crimes</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<div id="plot"></div>
+
+<script>
+  var x = ['Black Lives Matter', 'Brionna Taylor', 'George Floyd', 'Police Brutality',
+           'Racial Inequality', 'Systematic Racism', 'Hate Crimes'];
+  var y = [83/215, 3/4, 108/157, 25/55, 8/22, 2/7, 3297/6651];
+  var y2 = [85/215, 0, 15/157, 16/55, 8/22, 3/7, 3424/6570];
+  var y3 = [47/215, 1/4, 34/157, 14/55, 6/22, 2/7, 0];
+
+  var data = [
+    {
+      x: x,
+      y: y,
+      type: 'bar',
+      name: '2021',
+      marker: {
+        color: 'rgba(51, 153, 255, 0.8)', // Light blue, slight transparency
+        line: {
+          color: 'rgba(51, 153, 255, 0.8)',
+          width: 1.5
+        }
+      }
+    },
+    {
+      x: x,
+      y: y2,
+      type: 'bar',
+      name: '2022',
+      marker: {
+        color: 'rgba(0, 102, 204, 0.8)', // Medium blue, slight transparency
+        line: {
+          color: 'rgba(0, 102, 204, 0.8)',
+          width: 1.5
+        }
+      }
+    },
+    {
+      x: x,
+      y: y3,
+      type: 'bar',
+      name: '2023',
+      marker: {
+        color: 'rgba(0, 51, 102, 0.8)', // Dark blue, slight transparency
+        line: {
+          color: 'rgba(0, 51, 102, 0.8)',
+          width: 1.5
+        }
+      }
+    }
+  ];
+
+  var layout = {
+    title: 'African American Key Words and Hate Crimes',
+    barmode: 'group',
+    xaxis: {title: ''},
+    yaxis: {title: 'Percentage'}
+  };
+
+  Plotly.newPlot('plot', data, layout);
+</script>
+
+</body>
+</html>

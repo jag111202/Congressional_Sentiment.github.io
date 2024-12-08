@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C_SPAN Rhetoric</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+     <script src="js/jquery-2.1.1.min.js"></script>
+	 <script src="js/bootstrap.min.js"></script>
+	 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Violin Plot with D3.js</title>
+  <!-- Load D3.js and Plotly from CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</style>
+</head>
+<body>
+	<section id="header">
+		<nav class="navbar navbar-default navbar-fixed-top nav_home">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+	
+		
+				   <div class="navbar-header page-scroll">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>				</button>
+					<a class="navbar-brand" href="index.html"><i class="C-Span logo"></i>C-SPAN Rhetoric</a>
+				</div>
+	
+	
+				   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">					
+						<li><a class="color_1" href="index.html">Home</a></li>	
+						<li><a class="color_1" href="sentiment_analysis.html">Sentiment Analysis</a></li>						
+						<li><a class=" color_1" href="audio_analysis.html">Audio Analysis</a></li>
+						<li><a class=" color_1" href="hate_crimes.html">Hate Speech Analysis</a></li>								
+						<li><a class=" color_1" href="team.html">Team</a></li>
+					</ul>				
+				</div>			
+			<!-- Collect the nav links, forms, and other content for toggling -->			
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	</section>
+	
+ <section id="center_about_Hate">
+   <div class="container">
+	    <div class="row">
+		  <div class=" center_about_Hate clearfix">
+			<div class="col-sm-7">
+			 <div class="center_about_left">
+			   <div class="center_about_left_inner_1 clearfix">
+			     <hr class="hr_2">
+				 <h1>Hate Speech Analysis</h1>
+			   </div>
+			 </div>
+			</div>
+			<div class="col-sm-5"></div>
+		  </div>
+		</div>
+	  </div>  	  
+	</section>
+<section id="about">
+ <div class="container">
+  <div class="row">
+   <div class="about_1">
+    <h2>Methodology</h2>
+	<p>The Hate Crimes Team aims to study the topic: "Does negative congressional sentiment influence the number of racial-based hate crimes?" This research is critical in understanding the societal impacts of political rhetoric and how it may have contributed to the rise or fall in hate crimes during 2021 - 2023. We feel it's imperative to unravel any links between the language used in politics and how it shapes societal responses. We can better understand these dynamics and promote more mindful and responsible communication in our political discourse. Our chosen timeframe and carefully selected keywords aim to provide
+     a holistic picture that embraces a wide range of societal challenges. The insights gained from this research could aid in the fight against hate crimes and systemic racism.​​</p>
+     <p>With the data collected from the C-SPAN Archive and the Federal Bureau of Investigation Crime Data Explorer, 
+      we were able to analyze the significance of negative sentiment and the number of racial-based hate crimes in 2021 and 2022. It is noted that data for racial-based hate crimes in 2023 has yet to be published.</p>
+   </div>
+   
+      </div>
+      <div class="col-sm-12 pull clearfix space_all">
+        <div class="col-sm-7 pull space_all">
+          <div class="about_inner">
+            <!-- Embed the new plotly graph here -->
+            <div id="plot_african_hate" style="width: 700px; height: 480px;"></div>
+          </div>
+          <div class="about_inner_1" id="textBox">
+            <h2>African American Hate Crimes</h2>
+            <ul style="list-style-type: disc; font-size: 20px;">
+              <li>Focusing on African American negative sentiment, we see a decline in sentiment with around 48% significance in 2021 but only around 26% in 2022. </li>
+              <li>In contrast, there 
+                is a slight increase in hate crimes with around 49% of racial-based hate crimes in 2021 being against African Americans, but in 2022, around 51% of racial-based hate crimes were against African Americans.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-5 pull">
+        </div>
+      </div>
+      
+      <script>
+        var x = ['Black Lives Matter', 'Brionna Taylor', 'George Floyd', 'Police Brutality',
+                 'Racial Inequality', 'Systematic Racism', 'Hate Crimes'];
+        var y = [83/215, 3/4, 108/157, 25/55, 8/22, 2/7, 3297/6651];
+        var y2 = [85/215, 0, 15/157, 16/55, 8/22, 3/7, 3424/6570];
+        var y3 = [47/215, 1/4, 34/157, 14/55, 6/22, 2/7, 0];
+      
+        var data = [
+          {
+            x: x,
+            y: y,
+            type: 'bar',
+            name: '2021',
+            marker: {
+              color: 'rgba(51, 153, 255, 0.8)', // Light blue, slight transparency
+              line: {
+                color: 'rgba(51, 153, 255, 0.8)',
+                width: 1.5
+              }
+            }
+          },
+          {
+            x: x,
+            y: y2,
+            type: 'bar',
+            name: '2022',
+            marker: {
+              color: 'rgba(0, 102, 204, 0.8)', // Medium blue, slight transparency
+              line: {
+                color: 'rgba(0, 102, 204, 0.8)',
+                width: 1.5
+              }
+            }
+          },
+          {
+            x: x,
+            y: y3,
+            type: 'bar',
+            name: '2023',
+            marker: {
+              color: 'rgba(0, 51, 102, 0.8)', // Dark blue, slight transparency
+              line: {
+                color: 'rgba(0, 51, 102, 0.8)',
+                width: 1.5
+              }
+            }
+          }
+        ];
+      
+        var layout = {
+          title: 'African American Key Words and Hate Crimes',
+          barmode: 'group',
+          xaxis: {title: ''},
+          yaxis: {title: 'Percentage'},
+          width: 700, // Adjusted width
+          height: 480 // Adjusted height
+        };
+      
+        Plotly.newPlot('plot_african_hate', data, layout);
+      </script>
+      
+      
+</body>
+</html>
+<body>
+  <div class="col-sm-12 pull clearfix space_all">
+      <div class="col-sm-7 pull space_all">
+          <div class="about_inner">
+              <!-- SVG container for the chart -->
+              <svg id="bubble-chart-2" width="695" height="452"></svg>
+          </div>
+          <div class="about_inner_1" id="textBox">
+              <h2>This word bubble shows the wordcount of specific key terms in the articles:</h2>
+              <ul style="list-style-type: disc; font-size: 20px;">
+                  <li>Dugan, Laura, and Erica Chenoweth. “Threat, Emboldenment, or Both? The Effects of Political Power on Violent Hate Crimes*.” Criminology 58, no. 4 (2020): 714–46.​</li>
+              </ul>
+          </div>
+      </div>
+      <div class="col-sm-5 pull">
+      </div>
+  </div>
+
+  <script>
+      // Fetch JSON data
+      d3.json('word_counts_Black_Lives.json')
+          .then(data => {
+              // Set up dimensions and margins for the chart
+              var margin = { top: 50, right: 20, bottom: 70, left: 40 }, // Adjusted margins
+                  width = 695 - margin.left - margin.right,
+                  height = 452 - margin.top - margin.bottom;
+
+              // Create SVG element
+              var svg = d3.select('#bubble-chart-2')
+                  .attr('width', width + margin.left + margin.right)
+                  .attr('height', height + margin.top + margin.bottom);
+
+              // Extracting data
+              var words = data.map(entry => entry.word);
+              var counts = data.map(entry => entry.count);
+
+              // Scale for circle sizes
+              var radiusScale = d3.scaleSqrt()
+                  .domain([0, d3.max(counts)])
+                  .range([15, 40]); // Adjusted range for smaller bubble sizes
+
+              // Custom color scale for different sized bubbles
+              var colorScale = d3.scaleQuantize()
+                  .domain([0, d3.max(counts)])
+                  .range(['#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#008080']); // Light blue to dark blue
+
+              // Create nodes for the force simulation
+              var nodes = data.map((d, i) => ({
+                  id: i,
+                  word: d.word,
+                  count: d.count,
+                  radius: radiusScale(d.count),
+                  color: colorScale(d.count)
+              }));
+
+              // Create force simulation
+              var simulation = d3.forceSimulation(nodes)
+                  .force('charge', d3.forceManyBody().strength(-65)) // Decreased repulsion strength
+                  .force('x', d3.forceX().strength(0.05).x(width / 2))
+                  .force('y', d3.forceY().strength(0.1).y(height / 2 + margin.top)) // Adjusted y force and strength
+                  .force('collision', d3.forceCollide().radius(d => d.radius + 2).strength(1)) // Increased bubble separation
+                  .on('tick', ticked);
+
+              // Create circles (bubbles)
+              var bubbles = svg.selectAll('.bubble')
+                  .data(nodes)
+                  .enter().append('circle')
+                  .attr('class', 'bubble')
+                  .attr('r', d => d.radius)
+                  .style('fill', d => d.color)
+                  .on('mouseover', handleMouseOver)
+                  .on('mouseout', handleMouseOut)
+                  .call(drag(simulation));
+
+              // Create labels inside bubbles
+              var labels = svg.selectAll('.bubble-label')
+                  .data(nodes)
+                  .enter().append('text')
+                  .attr('class', 'bubble-label')
+                  .attr('dy', '.3em')
+                  .attr('text-anchor', 'middle')
+                  .style('pointer-events', 'none') // Make sure labels don't interfere with dragging
+                  .text(d => d.word + " (" + d.count + ")")
+                  .style('fill', 'black'); // Text color
+
+              // Handle mouse over event
+              function handleMouseOver(event, d) {
+                  d3.select(this).style('fill', 'orange');
+              }
+
+              // Handle mouse out event
+              function handleMouseOut(event, d) {
+                  d3.select(this).style('fill', d.color);
+              }
+
+              // Tick function for simulation
+              function ticked() {
+                  bubbles.attr('cx', d => d.x)
+                      .attr('cy', d => d.y);
+
+                  labels.attr('x', d => d.x)
+                      .attr('y', d => d.y);
+              }
+
+              // Drag function for nodes
+              function drag(simulation) {
+                  function dragstarted(event, d) {
+                      if (!event.active) simulation.alphaTarget(0.3).restart();
+                      d.fx = d.x;
+                      d.fy = d.y;
+                  }
+
+                  function dragged(event, d) {
+                      d.fx = event.x;
+                      d.fy = event.y;
+                  }
+
+                  function dragended(event, d) {
+                      if (!event.active) simulation.alphaTarget(0);
+                      d.fx = null;
+                      d.fy = null;
+                  }
+
+                  return d3.drag()
+                      .on('start', dragstarted)
+                      .on('drag', dragged)
+                      .on('end', dragended);
+              }
+          })
+          .catch(error => console.error('Error fetching data:', error));
+  </script>
+<div class="col-sm-12 pull clearfix space_all">
+  <div class="col-sm-7 pull space_all">
+    <div class="about_inner">
+      <!-- Embed the new plotly graph here -->
+      <div id="plot_asian_hate" style="width: 700px; height: 480px;"></div>
+    </div>
+    <div class="about_inner_1" id="textBox">
+      <h2>Asian American Hate Crimes</h2>
+      <ul style="list-style-type: disc; font-size: 20px;">
+        <li>Focusing on Asian American negative sentiment, we see a heavy decline in sentiment with around 56% of significance residing in 2021 and only around 17% of significance residing in 2022.​​</li>
+			  <li>When comparing the significance of crimes against Asian Americans with the number of racial-based hate crimes, we only see a slight decline between the years, with 11.32% in 2021 and 11.23% in 2022.​​</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-sm-5 pull">
+  </div>
+</div>
+
+<script>
+  var x = ['Asian Hate', 'China Virus', 'Chinese Spy', 'Chinese Virus', 'Hate Crimes'];
+  var y = [111/146, 73/120, 15/67, 38/59, 753/6651];
+  var y2 = [21/146, 26/120, 6/67, 7/59, 738/6570];
+  var y3 = [14/146, 21/120, 46/67, 14/59, 0];
+
+  var data = [
+    {
+      x: x,
+      y: y,
+      type: 'bar',
+      name: '2021',
+      marker: {
+        color: 'rgb(178,223,219)',
+        line: {
+          color: 'rgb(178,223,219)',
+          width: 1.5
+        }
+      }
+    },
+    {
+      x: x,
+      y: y2,
+      type: 'bar',
+      name: '2022',
+      marker: {
+        color: 'rgb(77,182,172)',
+        line: {
+          color: 'rgb(77,182,172)',
+          width: 1.5
+        }
+      }
+    },
+    {
+      x: x,
+      y: y3,
+      type: 'bar',
+      name: '2023',
+      marker: {
+        color: 'rgb(0,150,136)',
+        line: {
+          color: 'rgb(0,150,136)',
+          width: 1.5
+        }
+      }
+    }
+  ];
+
+  var layout = {
+    title: 'Asian American Key Words and Hate Crimes',
+    barmode: 'group',
+    xaxis: {title: ''},
+    yaxis: {title: 'Percentage'},
+    width: 700, // Adjusted width
+    height: 480 // Adjusted height
+  };
+
+  Plotly.newPlot('plot_asian_hate', data, layout);
+</script>
+
+	  
+   <div class="col-sm-12 space_all">
+    <div class="col-sm-4 space_all">
+	 <div class="about_3">
+	  <ul>
+	    
+	  </ul>
+	  
+	 </div>
+	</div>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+      /* Style the bubbles */
+      .bubble {
+          cursor: pointer;
+      }
+
+      /* Style the text inside bubbles */
+      .bubble-label {
+          fill: black; /* Text color */
+          font-size: px; /* Decreased font size */
+          text-anchor: middle;
+      }
+
+      /* Style the SVG container */
+      #bubble-chart {
+          background-color: white; /* White background color */
+      }
+  </style>
+</head>
+<body>
+  <div class="col-sm-12 pull clearfix space_all">
+      <div class="col-sm-7 pull space_all">
+          <div class="about_inner">
+              <!-- SVG container for the chart -->
+              <svg id="bubble-chart" width="695" height="452"></svg>
+          </div>
+          <div class="about_inner_1" id="textBox">
+              <h2>This word bubble shows the wordcount of specific keyterms in the article:</h2>
+              <ul style="list-style-type: disc; font-size: 20px;">
+                  <li>Cao, Jiepin, Chiyoung Lee, Wenyang Sun, and Jennie C. De Gagne. “The #StopAsianHate Movement on Twitter: A Qualitative Descriptive Study.” International Journal of Environmental Research and Public Health 19, no. 7 (January 2022): 3757.​</li>
+ 
+                    <li> Arora, Maneesh and Hannah June Kim. "Stopping the Hate: Political Condemnations of Anti-Asian Rhetoric during the COVID-19 Crisis." Journal of Asian American Studies, vol. 23 no. 3, 2020, p. 387-405. Project MUSE​</li>
+                    
+                      <li>Sharif, Mienah Zulfacar, et al. “Racism and Structural Violence: Interconnected Threats to Health Equity.” Frontiers in Public Health, U.S. National Library of Medicine, 3 Feb. 2022.​</li>
+              </ul>
+          </div>
+      </div>
+      <div class="col-sm-5 pull">
+      </div>
+  </div>
+
+  <script>
+      // Fetch JSON data
+      d3.json('word_counts.json')
+          .then(data => {
+              // Set up dimensions and margins for the chart
+              var margin = { top: 50, right: 20, bottom: 70, left: 40 }, // Adjusted margins
+                  width = 695 - margin.left - margin.right,
+                  height = 452 - margin.top - margin.bottom;
+
+              // Create SVG element
+              var svg = d3.select('#bubble-chart')
+                  .attr('width', width + margin.left + margin.right)
+                  .attr('height', height + margin.top + margin.bottom);
+
+              // Extracting data
+              var words = data.map(entry => entry.word[0]);
+              var counts = data.map(entry => entry.count[0]);
+
+              // Scale for circle sizes
+              var radiusScale = d3.scaleSqrt()
+                  .domain([0, d3.max(counts)])
+                  .range([15, 40]); // Adjusted range for smaller bubble sizes
+
+              // Custom color scale for different sized bubbles
+              var colorScale = d3.scaleQuantize()
+                  .domain([0, d3.max(counts)])
+                  .range(['#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5', '#08519c', '#008080']); // Light blue to dark blue
+
+              // Create nodes for the force simulation
+              var nodes = data.map((d, i) => ({
+                  id: i,
+                  word: d.word[0],
+                  count: d.count[0],
+                  radius: radiusScale(d.count[0]),
+                  color: colorScale(d.count[0])
+              }));
+
+              // Create force simulation
+              var simulation = d3.forceSimulation(nodes)
+                  .force('charge', d3.forceManyBody().strength(-65)) // Decreased repulsion strength
+                  .force('x', d3.forceX().strength(0.05).x(width / 2))
+                  .force('y', d3.forceY().strength(0.1).y(height / 2 + margin.top)) // Adjusted y force and strength
+                  .force('collision', d3.forceCollide().radius(d => d.radius + 2).strength(1)) // Increased bubble separation
+                  .on('tick', ticked);
+
+              // Create circles (bubbles)
+              var bubbles = svg.selectAll('.bubble')
+                  .data(nodes)
+                  .enter().append('circle')
+                  .attr('class', 'bubble')
+                  .attr('r', d => d.radius)
+                  .style('fill', d => d.color)
+                  .on('mouseover', handleMouseOver)
+                  .on('mouseout', handleMouseOut)
+                  .call(drag(simulation));
+
+              // Create labels inside bubbles
+              var labels = svg.selectAll('.bubble-label')
+                  .data(nodes)
+                  .enter().append('text')
+                  .attr('class', 'bubble-label')
+                  .attr('dy', '.3em')
+                  .attr('text-anchor', 'middle')
+                  .style('pointer-events', 'none') // Make sure labels don't interfere with dragging
+                  .text(d => d.word + " (" + d.count + ")")
+                  .style('fill', 'black'); // Text color
+
+              // Handle mouse over event
+              function handleMouseOver(event, d) {
+                  d3.select(this).style('fill', 'orange');
+              }
+
+              // Handle mouse out event
+              function handleMouseOut(event, d) {
+                  d3.select(this).style('fill', d.color);
+              }
+
+              // Tick function for simulation
+              function ticked() {
+                  bubbles.attr('cx', d => d.x)
+                      .attr('cy', d => d.y);
+
+                  labels.attr('x', d => d.x)
+                      .attr('y', d => d.y);
+              }
+
+              // Drag function for nodes
+              function drag(simulation) {
+                  function dragstarted(event, d) {
+                      if (!event.active) simulation.alphaTarget(0.3).restart();
+                      d.fx = d.x;
+                      d.fy = d.y;
+                  }
+
+                  function dragged(event, d) {
+                      d.fx = event.x;
+                      d.fy = event.y;
+                  }
+
+                  function dragended(event, d) {
+                      if (!event.active) simulation.alphaTarget(0);
+                      d.fx = null;
+                      d.fy = null;
+                  }
+
+                  return d3.drag()
+                      .on('start', dragstarted)
+                      .on('drag', dragged)
+                      .on('end', dragended);
+              }
+          })
+          .catch(error => console.error('Error fetching data:', error));
+  </script>
+<div class="col-sm-12 space_all">
+  <div class="col-sm-4 space_all">
+      <div class="about_3">
+          <ul>
+              
+          </ul>
+      </div>
+  </div>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+      /* Style the bubbles */
+      .bubble {
+          cursor: pointer;
+      }
+
+      /* Style the text inside bubbles */
+      .bubble-label {
+          fill: black; /* Text color */
+          font-size: px; /* Decreased font size */
+          text-anchor: middle;
+      }
+
+      /* Style the SVG container */
+      #bubble-chart-2 {
+          background-color: white; /* White background color */
+      }
+  </style>
+</head>
+
+</div>
+
+	<div class="col-sm-8"></div>
+   </div>
+  </div>
+ </div>
+</section>
+ <section id="team" class="background_1 team_page">
+	 <div class="container">
+	  <div class="row">
+	   <div class="research clearfix">
+	 <h1 class="text-center">Hate Speech Analysis Team</h1>
+	
+		<div class="col-sm-3">
+		 <div class="team_1 clearfix">
+		   <div class="grid clearfix">
+						<figure class="effect-jazz">
+							<img src="img/Madison_Profile.png">
+							<figcaption>
+							</figcaption>			
+			  </figure>
+		  </div>
+		 </div>
+		 <div class="team_inner clearfix text-center">
+		 <h3><a href="team.html#layout_Hate_Speech">Madison Ramos</a></h3>
+		 <h4>Researcher</h4>
+		  <p class="para_2"> </p>
+		  <ul>
+        <li><a href="https://www.linkedin.com/in/madison-ramos-41b35229b/"><i class="fa fa-linkedin"></i></a></li>
+
+        	      </ul>
+		</div>
+		</div>
+		<div class="col-sm-3">
+		 <div class="team_1 clearfix">
+		   <div class="grid clearfix">
+						<figure class="effect-jazz">
+							<img src="img/Jelani_Profile.png" alt="img25">
+							<figcaption>
+			  </figure>
+		  </div>
+		 </div>
+		 <div class="team_inner clearfix text-center">
+		 <h3><a href="team.html#layout_Hate_Speech">Jelani  C. Francis</a></h3>
+		 <h4>Researcher</h4>
+		  <p class="para_2"></p>
+		  <ul>
+	      </ul>
+		</div>
+		</div>
+		<div class="col-sm-3">
+		 <div class="team_1 clearfix">
+		   <div class="grid clearfix">
+						<figure class="effect-jazz">
+							<img src="img/Female_Profile_Anonymous.png" alt="img25">
+							<figcaption>
+			  </figure>
+		  </div>
+		 </div>
+		 <div class="team_inner clearfix text-center">
+		 <h3><a href="team.html#layout_Hate_Speech">Angelina De La Torre</a></h3>
+		 <h4>Researcher</h4>
+		  <p class="para_2"></p>
+		</div>
+		</div>
+	   </div>
+	   
+	  </div>
+	 </div>
+    </section>
+	
+ 
+ 
+ <section id="footer_bottom">
+ <div class="container">
+    <div class="col-sm-12">
+	 <div class="footer_bottom">
+	   <p> © 2024 CSPAN Rhetoric. Designed by Jesus Gonzalez</a></p>
+	 </div>
+	</div>
+  </div>
+ 
+</section>
+	 
+</body>
+       
+</html>

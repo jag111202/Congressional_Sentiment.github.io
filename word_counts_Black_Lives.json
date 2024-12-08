@@ -1,0 +1,238 @@
+[
+  {
+    "word": ["crime"],
+    "count": [252]
+  },
+  {
+    "word": ["hate"],
+    "count": [208]
+  },
+  {
+    "word": ["protest"],
+    "count": [150]
+  },
+  {
+    "word": ["health"],
+    "count": [99]
+  },
+  {
+    "word": ["signific"],
+    "count": [54]
+  },
+  {
+    "word": ["victim"],
+    "count": [53]
+  },
+  {
+    "word": ["ref"],
+    "count": [48]
+  },
+  {
+    "word": ["structur"],
+    "count": [47]
+  },
+  {
+    "word": ["percent"],
+    "count": [47]
+  },
+  {
+    "word": ["control"],
+    "count": [47]
+  },
+  {
+    "word": ["et"],
+    "count": [44]
+  },
+  {
+    "word": ["al"],
+    "count": [44]
+  },
+  {
+    "word": ["area"],
+    "count": [44]
+  },
+  {
+    "word": ["institut"],
+    "count": [34]
+  },
+  {
+    "word": ["care"],
+    "count": [34]
+  },
+  {
+    "word": ["adult"],
+    "count": [34]
+  },
+  {
+    "word": ["estim"],
+    "count": [34]
+  },
+  {
+    "word": ["counti"],
+    "count": [34]
+  },
+  {
+    "word": ["correl"],
+    "count": [34]
+  },
+  {
+    "word": ["compar"],
+    "count": [33]
+  },
+  {
+    "word": ["treat"],
+    "count": [32]
+  },
+  {
+    "word": ["treatment"],
+    "count": [32]
+  },
+  {
+    "word": ["death"],
+    "count": [31]
+  },
+  {
+    "word": ["abhc"],
+    "count": [31]
+  },
+  {
+    "word": ["shock"],
+    "count": [30]
+  },
+  {
+    "word": ["anti-black"],
+    "count": [29]
+  },
+  {
+    "word": ["experienc"],
+    "count": [29]
+  },
+  {
+    "word": ["respond"],
+    "count": [29]
+  },
+  {
+    "word": ["question"],
+    "count": [28]
+  },
+  {
+    "word": ["figur"],
+    "count": [28]
+  },
+  {
+    "word": ["survey"],
+    "count": [27]
+  },
+  {
+    "word": ["blm"],
+    "count": [27]
+  },
+  {
+    "word": ["colleg"],
+    "count": [26]
+  },
+  {
+    "word": ["sampl"],
+    "count": [26]
+  },
+  {
+    "word": ["system"],
+    "count": [25]
+  },
+  {
+    "word": ["awhc"],
+    "count": [25]
+  },
+  {
+    "word": ["ask"],
+    "count": [24]
+  },
+  {
+    "word": ["higher"],
+    "count": [24]
+  },
+  {
+    "word": ["relat"],
+    "count": [23]
+  },
+  {
+    "word": ["measur"],
+    "count": [23]
+  },
+  {
+    "word": ["support"],
+    "count": [22]
+  },
+  {
+    "word": ["regress"],
+    "count": [22]
+  },
+  {
+    "word": ["period"],
+    "count": [22]
+  },
+  {
+    "word": ["mechan"],
+    "count": [21]
+  },
+  {
+    "word": ["famili"],
+    "count": [21]
+  },
+  {
+    "word": ["matter"],
+    "count": [20]
+  },
+  {
+    "word": ["domain"],
+    "count": [20]
+  },
+  {
+    "word": ["tweet"],
+    "count": [20]
+  },
+  {
+    "word": ["nation"],
+    "count": [19]
+  },
+  {
+    "word": ["averag"],
+    "count": [19]
+  },
+  {
+    "word": ["discontinu"],
+    "count": [19]
+  },
+  {
+    "word": ["neighborhood"],
+    "count": [18]
+  },
+  {
+    "word": ["robust"],
+    "count": [18]
+  },
+  {
+    "word": ["odd"],
+    "count": [17]
+  },
+  {
+    "word": ["member"],
+    "count": [17]
+  },
+  {
+    "word": ["reduc"],
+    "count": [17]
+  },
+  {
+    "word": ["person"],
+    "count": [17]
+  },
+  {
+    "word": ["negat"],
+    "count": [17]
+  },
+  {
+    "word": ["mobil"],
+    "count": [17]
+  }
+]

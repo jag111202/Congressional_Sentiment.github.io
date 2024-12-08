@@ -1,0 +1,86 @@
+[
+  {
+    "president": "Biden",
+    "search_term": "Immigration",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Positive",
+    "count": 0.5
+  },
+  {
+    "president": "Biden",
+    "search_term": "Immigration",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Negative",
+    "count": 0.3
+  },
+  {
+    "president": "Biden",
+    "search_term": "Immigration",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Neutral",
+    "count": 0.2
+  },
+  {
+    "president": "Biden",
+    "search_term": "Inflation",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Positive",
+    "count": 0.58
+  },
+  {
+    "president": "Biden",
+    "search_term": "Inflation",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Negative",
+    "count": 0.23
+  },
+  {
+    "president": "Biden",
+    "search_term": "Inflation",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Neutral",
+    "count": 0.19
+  },
+  {
+    "president": "Trump",
+    "search_term": "Immigration",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Positive",
+    "count": 0.65
+  },
+  {
+    "president": "Trump",
+    "search_term": "Immigration",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Negative",
+    "count": 0.19
+  },
+  {
+    "president": "Trump",
+    "search_term": "Immigration",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Neutral",
+    "count": 0.17
+  },
+  {
+    "president": "Trump",
+    "search_term": "Inflation",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Positive",
+    "count": 0.8
+  },
+  {
+    "president": "Trump",
+    "search_term": "Inflation",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Negative",
+    "count": 0.06
+  },
+  {
+    "president": "Trump",
+    "search_term": "Inflation",
+    "analysis_tool": "Dictionary",
+    "sentiment": "Neutral",
+    "count": 0.14
+  }
+]

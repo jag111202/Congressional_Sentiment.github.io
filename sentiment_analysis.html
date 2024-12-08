@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="robots" content="noindex,nofollow" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>C-SPAN Rhetoric</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+	 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+     <script src="js/jquery-2.1.1.min.js"></script>
+	 <script src="js/bootstrap.min.js"></script>
+	 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Violin Plot with D3.js</title>
+  <!-- Load D3.js and Plotly from CDN -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</style>
+</head>
+<body>
+	<section id="header">
+		<nav class="navbar navbar-default navbar-fixed-top nav_home">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+	
+		
+				   <div class="navbar-header page-scroll">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>				</button>
+					<a class="navbar-brand" href="index.html"><i class="C-Span logo"></i>C-SPAN Rhetoric</a>
+				</div>
+	
+	
+				   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">					
+						<li><a class="color_1" href="index.html">Home</a></li>	
+						<li><a class="color_1" href="sentiment_analysis.html">Sentiment Analysis</a></li>						
+						<li><a class=" color_1" href="audio_analysis.html">Audio Analysis</a></li>
+						<li><a class=" color_1" href="hate_crimes.html">Hate Speech Analysis</a></li>								
+						<li><a class=" color_1" href="team.html">Team</a></li>
+					</ul>				
+				</div>			
+			<!-- Collect the nav links, forms, and other content for toggling -->			
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	</section>
+	
+ <section id="center_about_Sentiment">
+   <div class="container">
+	    <div class="row">
+		  <div class=" center_about_Sentiment clearfix">
+			<div class="col-sm-7">
+			 <div class="center_about_left">
+			   <div class="center_about_left_inner_1 clearfix">
+			     <hr class="hr_2">
+				 <h1>Sentiment Analysis</h1>
+			   </div>
+			 </div>
+			</div>
+			<div class="col-sm-5"></div>
+		  </div>
+		</div>
+	  </div>  	  
+	</section>
+<section id="about">
+ <div class="container">
+  <div class="row">
+   <div class="about_1">
+    <h2>Methodology</h2>
+	<p>It is easy for one to see that rhetoric has become more heated, but trying to observe such changes requires a clear definition of “sentiment.” Unfortunately, the number of definitions for this concept approximates the number of tools, so it is difficult to say which definition is best.​
+		"Vader" and "TextBlob" may sound like movie titles, but the way they help analyze sentiment is very real. Comparing these methods to traditional dictionary-based approaches gives the sentiment analysis sub-team a clearer picture of polarization on Capitol Hill.​​</p>
+   </div>
+   <div class="col-sm-12 pull clearfix space_all">
+    <div class="col-sm-7 pull space_all">
+        <div class="about_inner"
+            <!-- Embed the plotly graph here -->
+            <div id="plot"></div>
+        </div>
+        <div class="about_inner_1" id="textBox">
+            <h2>TextBlob</h2>
+            <ul style="list-style-type: disc; font-size: 20px;">
+                <li>Uses NLP techniques to compute subjectivity and polarity</li>
+                <li>Has use cases beyond sentiment</li>
+                <li>Easy to use but slow</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-5 pull">
+        <!--Your content for the right column, if any-->
+    </div>
+</div>
+
+</div>
+
+<script>
+  // Load data from CSV file
+  d3.csv("melted_data.csv").then(function(data) {
+    // Create the violin plot using Plotly and D3.js
+    var layout = {
+      title: "Textblob Sentiment Analysis",
+      xaxis: {
+        title: "Analysis Type",
+        automargin: true, // Automatically adjust margin to fit labels
+      },
+      yaxis: {
+        title: "Value",
+        automargin: true, // Automatically adjust margin to fit labels
+      },
+      violinmode: "group",
+      width: 800, // Adjusted width
+      height: 600, // Adjusted height
+      margin: {
+        l: 40, // Left margin
+        r: 10, // Right margin
+        t: 40, // Top margin
+        b: 40, // Bottom margin
+      },
+    };
+
+    var config = { responsive: true };
+
+    var traces = [];
+    var variables = [...new Set(data.map(d => d.variable))];
+
+    variables.forEach(function(variable, index) {
+      var subset = data.filter(d => d.variable === variable);
+      var trace = {
+        type: "violin",
+        x: subset.map(d => d.variable),
+        y: subset.map(d => d.value),
+        legendgroup: variable,
+        scalegroup: variable,
+        name: variable,
+        side: "both",
+        line: { color: getColor(index, variables.length) },
+        fillcolor: getColor(index, variables.length),
+        hoveron: "points",
+        hoverinfo: "y+name",
+        box: { visible: true },
+        meanline: { visible: true },
+        scalemode: "count"
+      };
+      traces.push(trace);
+    });
+
+    Plotly.newPlot("plot", traces, layout, config);
+  }).catch(function(error) {
+    throw error;
+  });
+
+  // Function to get different colors
+  function getColor(index, total) {
+    var colorScale = d3.scaleSequential()
+      .domain([0, total])
+      .interpolator(d3.interpolateRainbow);
+    return colorScale(index);
+  }
+
+</script>
+</body>
+</html>
+
+<div class="col-sm-12 space_all">
+    <div class="col-sm-4 space_all">
+        <div class="about_3">
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-12 pull clearfix space_all">
+        <div class="col-sm-7 pull space_all">
+            <div class="about_inner">
+                <!-- Embed the plotly graph here -->
+                <div id="plotly-graph"></div>
+            </div>
+            <div class="about_inner_1" id="textBox">
+                <h2>VADER</h2>
+                <ul style="list-style-type: disc; font-size: 20px;">
+                    <li>Analyze sentiment for social media​</li>
+                    <li>Handles slang and nuance well​</li>
+                    <li>Immediate deployment with efficient analysis​</li>
+                    <li>Not as suitable for politician speeches</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-5 pull">
+        </div>
+    </div>
+</div>
+
+<script>
+  // Data for the graph
+  var data = [
+    {
+      x: ['Trump Immigration', 'Biden Immigration', 'Trump Inflation', 'Biden Inflation'],
+      y: [0.72, 0.55, 0.87, 0.66],
+      type: 'bar',
+      name: 'Positive',
+      marker: {color: 'rgba(0, 159, 0, 0.25)', line: {color: 'rgba(0, 159, 0, 0.60)', width: 1.5}}
+    },
+    {
+      x: ['Trump Immigration', 'Biden Immigration', 'Trump Inflation', 'Biden Inflation'],
+      y: [0.07, 0.08, 0.05, 0.08],
+      type: 'bar',
+      name: 'Neutral',
+      marker: {color: 'rgba(0, 0, 0, 0.25)', line: {color: 'rgba(0, 0, 0, 0.60)', width: 1.5}}
+    },
+    {
+      x: ['Trump Immigration', 'Biden Immigration', 'Trump Inflation', 'Biden Inflation'],
+      y: [0.21, 0.38, 0.09, 0.27],
+      type: 'bar',
+      name: 'Negative',
+      marker: {color: 'rgba(159, 0, 0, 0.25)', line: {color: 'rgba(159, 0, 0, 0.60)', width: 1.5}}
+    }
+  ];
+
+  // Layout for the graph
+  var layout = {
+    title: 'Vader Sentiment Analysis',
+    xaxis: {title: 'President and Topic'},
+    yaxis: {title: 'Sentiment Percentage'},
+    barmode: 'stack'
+  };
+
+  // Create the plotly graph
+  Plotly.newPlot('plotly-graph', data, layout);
+</script>
+<div class="col-sm-12 space_all">
+  <div class="col-sm-4 space_all">
+      <div class="about_3">
+          <ul>
+          </ul>
+      </div>
+  </div>
+	<div class="col-sm-12 pull clearfix space_all">
+		<div class="col-sm-7 pull space_all">
+		  <div class="about_inner">
+        <iframe src="dictionary_sentiment_plot.html" width="800" height="500" frameborder="0"></iframe>
+		  </div>
+		  <div class="about_inner_1" id="textBox">
+			<h2>Dictionary (spaCy)</h2>
+			<ul style="list-style-type: disc; font-size: 20px;">
+			  <li>Uses pre-computed sentiment scores for each word​​</li>
+			  <li>Very simple to implement​​</li>
+			  <li>Only analyzes at word level, misses nuance​​</li>
+			</ul>
+		  </div>
+		</div>
+		<div class="col-sm-5 pull">
+		</div>
+	  </div>
+    
+  </script>
+  <div class="col-sm-12 space_all">
+    <div class="col-sm-4 space_all">
+        <div class="about_3">
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-12 pull clearfix space_all">
+      <div class="col-sm-7 pull space_all">
+        <div class="about_inner">
+          <iframe src="Combined_Sentiment_Analysis_plotly_plot.html" width="1000" height="800" frameborder="0"></iframe>
+        </div>
+       
+      </div>
+      <div class="col-sm-5 pull">
+      </div>
+      </div>
+	<div class="col-sm-8"></div>
+   </div>
+  </div>
+ </div>
+ <section id="team" class="background_1 team_page">
+	 <div class="container">
+	  <div class="row">
+	   <div class="research clearfix">
+	 <h1 class="text-center">Sentiment Analysis Team</h1>
+	
+		<div class="col-sm-3">
+		 <div class="team_1 clearfix">
+		   <div class="grid clearfix">
+						<figure class="effect-jazz">
+							<img src="img/Narges_Profile.png">
+							<figcaption>
+							</figcaption>			
+			  </figure>
+		  </div>
+		 </div>
+		 <div class="team_inner clearfix text-center">
+		 <h3><a href="team.html#layout_Sentiment_Analysis">Narges Salari</a></h3>
+		 <h4>Researcher</h4>
+		  <p class="para_2">Worked on TextBlob Methodology </p>
+		  <ul>
+	      </ul>
+		</div>
+		</div>
+		<div class="col-sm-3">
+		 <div class="team_1 clearfix">
+		   <div class="grid clearfix">
+						<figure class="effect-jazz">
+							<img src="img/Sandra_Profile.png" alt="img25">
+							<figcaption>
+			  </figure>
+		  </div>
+		 </div>
+		 <div class="team_inner clearfix text-center">
+		 <h3><a href="team.html#layout_Sentiment_Analysis">Sunmin (Sandra) Lee</a></h3>
+		 <h4>Researcher</h4>
+		  <p class="para_2">Worked in Vader Methodology</p>
+		  <ul>
+	      </ul>
+		</div>
+		</div>
+		<div class="col-sm-3">
+		 <div class="team_1 clearfix">
+		   <div class="grid clearfix">
+						<figure class="effect-jazz">
+							<img src="img/Male_Profile_Anonymous.png" alt="img25">
+							<figcaption>
+			  </figure>
+		  </div>
+		 </div>
+		 <div class="team_inner clearfix text-center">
+		 <h3><a href="team.html#layout_Sentiment_Analysis">Carson Schumm</a></h3>
+		 <h4>Researcher</h4>
+		  <p class="para_2">Worked in Dictionary Method </p>
+		</div>
+		</div>
+	   </div>
+	   
+	  </div>
+	 </div>
+    </section>
+	
+ 
+ 
+ <section id="footer_bottom">
+ <div class="container">
+    <div class="col-sm-12">
+	 <div class="footer_bottom">
+    <p> © 2024 CSPAN Rhetoric. Designed by Jesus Gonzalez</a></p>
+  </div>
+	</div>
+  </div>
+ 
+</section>
+	 
+</body>
+       
+</html>
