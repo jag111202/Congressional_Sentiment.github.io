@@ -1,9 +1,6 @@
 /*
-Template Name:CSPAN Rhetoric
+Template Name:Congressional_Sentiment
 File: Layout CSS
-Author: Templates On Web
-Author URI: http://templateonweb.com/
-Licence: <a href="http://www.templateonweb.com/terms.php?v=content&contentid=152">Website Template Licence</a>
 */
 body{
   font-family:"Times New Roman", Times, serif;
@@ -93,7 +90,7 @@ color:#de5221!important;
 background: none;
 padding-top: 4px;
 padding-bottom: 6px;
-background: #fff;
+background: #d1cbcb;
 }
 #header .navbar-default ul li ul {
  min-width: 140%;
@@ -2260,8 +2257,9 @@ margin-bottom: 0px;
   padding: 2em;
   color: #fff;
   box-sizing: border-box;
-  flex-basis: calc(50% - 20px); /* 50% width with space for margin */
-  margin: 10px; /* Margin for spacing */
+  width: 100%; /* Explicitly set width to 80% */
+  margin: 10px auto; /* Center the box with margin auto */
+  display: block; /* Force block-level behavior */
 }
 
 @media (max-width: 768px) {
@@ -2270,10 +2268,23 @@ margin-bottom: 0px;
   }
 
   .about_inner_1 {
-    flex-basis: 100%; /* Take full width on smaller screens */
-    max-width: calc(100% - 40px); /* Adjust max-width to account for padding and border */
+    width: 100%; /* Full width on smaller screens */
+    max-width: 100%; /* Max-width 100% to ensure full width on mobile */
     margin: 10px 20px; /* Adjust margin for spacing */
   }
+}
+#business .row.center-row {
+  display: flex;
+  justify-content: center;  /* Center the columns horizontally */
+  gap: 20px;  /* Adds spacing between the two columns */
+}
+
+#business .col-sm-4 {
+  flex: 0 0 33.33%;  /* Ensure each column takes up 1/3 of the available space */
+}
+
+#business .space_all {
+  margin: 10px;  /* Optional: Adds margin to space out the items */
 }
 
 

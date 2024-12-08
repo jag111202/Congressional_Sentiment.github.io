@@ -40,9 +40,7 @@
 					<ul class="nav navbar-nav navbar-right">					
 						<li><a class="color_1" href="index.html">Home</a></li>	
 						<li><a class="color_1" href="sentiment_analysis.html">Sentiment Analysis</a></li>						
-						<li><a class=" color_1" href="audio_analysis.html">Audio Analysis</a></li>
 						<li><a class=" color_1" href="hate_crimes.html">Hate Speech Analysis</a></li>								
-						<li><a class=" color_1" href="team.html">Team</a></li>
 					</ul>				
 				</div>			
 			<!-- Collect the nav links, forms, and other content for toggling -->			
@@ -74,8 +72,8 @@
   <div class="row">
    <div class="about_1">
     <h2>Methodology</h2>
-	<p>It is easy for one to see that rhetoric has become more heated, but trying to observe such changes requires a clear definition of “sentiment.” Unfortunately, the number of definitions for this concept approximates the number of tools, so it is difficult to say which definition is best.​
-		"Vader" and "TextBlob" may sound like movie titles, but the way they help analyze sentiment is very real. Comparing these methods to traditional dictionary-based approaches gives the sentiment analysis sub-team a clearer picture of polarization on Capitol Hill.​​</p>
+	<p>This study involves cleaning and processing textual data, followed by applying three different sentiment analysis methods: TextBlob, Vader, and OpenAI models. These tools are used to analyze congressional rhetoric on immigration and inflation during both the Biden and Trump presidencies. By using a combination of these methods, we can capture a more comprehensive view of the sentiment in political discourse, 
+    providing deeper insights into how language around these topics may have evolved over time and how it potentially reflects or influences public opinion and behavior.​​</p>
    </div>
    <div class="col-sm-12 pull clearfix space_all">
     <div class="col-sm-7 pull space_all">
@@ -84,13 +82,25 @@
             <div id="plot"></div>
         </div>
         <div class="about_inner_1" id="textBox">
-            <h2>TextBlob</h2>
-            <ul style="list-style-type: disc; font-size: 20px;">
-                <li>Uses NLP techniques to compute subjectivity and polarity</li>
-                <li>Has use cases beyond sentiment</li>
-                <li>Easy to use but slow</li>
-            </ul>
-        </div>
+          <h2>TextBlob</h2>
+          <ul style="list-style-type: disc; font-size: 20px;">
+              <li>This graph shows the results of a sentiment analysis using TextBlob, which evaluates the polarity and subjectivity of text related to different political topics.</li>
+              <li><strong>Polarity</strong> measures the sentiment’s intensity, ranging from -1 (negative) to +1 (positive).</li>
+              <li><strong>Subjectivity</strong> gauges how subjective (opinion-based) or objective (fact-based) the text is, with scores ranging from 0 (objective) to 1 (subjective).</li>
+          </ul>
+      
+          <p>The analysis covers four topics:</p>
+          <ol style="font-size: 20px;">
+              <li><strong>Biden Inflation</strong>: Sentiment regarding congressional speeches on inflation during the Biden presidency.</li>
+              <li><strong>Trump Inflation</strong>: Sentiment regarding congressional speeches on inflation during the Trump presidency.</li>
+              <li><strong>Biden Immigration</strong>: Sentiment regarding congressional speeches on immigration during the Biden presidency.</li>
+              <li><strong>Trump Immigration</strong>: Sentiment regarding congressional speeches on immigration during the Trump presidency.</li>
+          </ol>
+      
+          <p>The graph shows the distribution of polarity and subjectivity for each of these topics. The texts about <strong>Trump’s inflation</strong> and <strong>immigration</strong> are generally more subjective, with more variation in their polarity, indicating a stronger mix of positive and negative sentiments. In contrast, the texts related to <strong>Biden’s inflation</strong> and <strong>immigration</strong> tend to be more neutral or slightly positive, with less variation.</p>
+      
+          <p>This analysis helps visualize how different political topics are framed in terms of sentiment, providing insight into how they are perceived or discussed in public discourse.</p>
+      </div>
     </div>
     <div class="col-sm-5 pull">
         <!--Your content for the right column, if any-->
@@ -179,16 +189,33 @@
             <div class="about_inner">
                 <!-- Embed the plotly graph here -->
                 <div id="plotly-graph"></div>
+                <div class="about_inner">
+                  <iframe src="dictionary_sentiment_plot.html" width="800" height="500" frameborder="0"></iframe>
+                </div>
             </div>
             <div class="about_inner_1" id="textBox">
-                <h2>VADER</h2>
-                <ul style="list-style-type: disc; font-size: 20px;">
-                    <li>Analyze sentiment for social media​</li>
-                    <li>Handles slang and nuance well​</li>
-                    <li>Immediate deployment with efficient analysis​</li>
-                    <li>Not as suitable for politician speeches</li>
-                </ul>
-            </div>
+              <h2>Vader/OpenAI Sentiment Analysis</h2>
+              <ul style="list-style-type: disc; font-size: 20px;">
+                  <li>These graphs shows the results of sentiment analysis using the Vader Sentiment Analysis method and OpenAI Analysis method, highlighting the distribution of sentiment (positive, neutral, and negative) for various political topics. OpenAI utilized their API to give sentiment ratings much like Vader.</li>
+                  <li><strong>Sentiment Percentage</strong> represents the percentage of sentiment expressed in the text, with values ranging from 0 (no sentiment) to 1 (strong sentiment).</li>
+                  <li>The sentiment is divided into three categories:
+                      <ul>
+                          <li><strong>Positive</strong> (green): Indicates the positive sentiment in the text.</li>
+                          <li><strong>Neutral</strong> (gray): Shows the neutral sentiment, where the text is neither positive nor negative.</li>
+                          <li><strong>Negative</strong> (red): Represents the negative sentiment in the text.</li>
+                      </ul>
+                  </li>
+              </ul>
+          
+              <p>The analysis covers four topics:</p>
+              <ol style="font-size: 20px;">
+                  <li><strong>Trump Immigration</strong>: Sentiment regarding congressional speeches on immigration during the Trump presidency.</li>
+                  <li><strong>Biden Immigration</strong>: Sentiment regarding congressional speeches on immigration during the Biden presidency.</li>
+                  <li><strong>Trump Inflation</strong>: Sentiment regarding congressional speeches on inflation during the Trump presidency.</li>
+                  <li><strong>Biden Inflation</strong>: Sentiment regarding congressional speeches on inflation during the Biden presidency.</li>
+              </ol>
+        
+          </div>
         </div>
         <div class="col-sm-5 pull">
         </div>
@@ -239,24 +266,7 @@
           </ul>
       </div>
   </div>
-	<div class="col-sm-12 pull clearfix space_all">
-		<div class="col-sm-7 pull space_all">
-		  <div class="about_inner">
-        <iframe src="dictionary_sentiment_plot.html" width="800" height="500" frameborder="0"></iframe>
-		  </div>
-		  <div class="about_inner_1" id="textBox">
-			<h2>Dictionary (spaCy)</h2>
-			<ul style="list-style-type: disc; font-size: 20px;">
-			  <li>Uses pre-computed sentiment scores for each word​​</li>
-			  <li>Very simple to implement​​</li>
-			  <li>Only analyzes at word level, misses nuance​​</li>
-			</ul>
-		  </div>
-		</div>
-		<div class="col-sm-5 pull">
-		</div>
-	  </div>
-    
+	
   </script>
   <div class="col-sm-12 space_all">
     <div class="col-sm-4 space_all">
@@ -279,75 +289,33 @@
    </div>
   </div>
  </div>
- <section id="team" class="background_1 team_page">
-	 <div class="container">
-	  <div class="row">
-	   <div class="research clearfix">
-	 <h1 class="text-center">Sentiment Analysis Team</h1>
-	
-		<div class="col-sm-3">
-		 <div class="team_1 clearfix">
-		   <div class="grid clearfix">
-						<figure class="effect-jazz">
-							<img src="img/Narges_Profile.png">
-							<figcaption>
-							</figcaption>			
-			  </figure>
-		  </div>
-		 </div>
-		 <div class="team_inner clearfix text-center">
-		 <h3><a href="team.html#layout_Sentiment_Analysis">Narges Salari</a></h3>
-		 <h4>Researcher</h4>
-		  <p class="para_2">Worked on TextBlob Methodology </p>
-		  <ul>
-	      </ul>
-		</div>
-		</div>
-		<div class="col-sm-3">
-		 <div class="team_1 clearfix">
-		   <div class="grid clearfix">
-						<figure class="effect-jazz">
-							<img src="img/Sandra_Profile.png" alt="img25">
-							<figcaption>
-			  </figure>
-		  </div>
-		 </div>
-		 <div class="team_inner clearfix text-center">
-		 <h3><a href="team.html#layout_Sentiment_Analysis">Sunmin (Sandra) Lee</a></h3>
-		 <h4>Researcher</h4>
-		  <p class="para_2">Worked in Vader Methodology</p>
-		  <ul>
-	      </ul>
-		</div>
-		</div>
-		<div class="col-sm-3">
-		 <div class="team_1 clearfix">
-		   <div class="grid clearfix">
-						<figure class="effect-jazz">
-							<img src="img/Male_Profile_Anonymous.png" alt="img25">
-							<figcaption>
-			  </figure>
-		  </div>
-		 </div>
-		 <div class="team_inner clearfix text-center">
-		 <h3><a href="team.html#layout_Sentiment_Analysis">Carson Schumm</a></h3>
-		 <h4>Researcher</h4>
-		  <p class="para_2">Worked in Dictionary Method </p>
-		</div>
-		</div>
-	   </div>
-	   
-	  </div>
-	 </div>
-    </section>
-	
- 
- 
+ <section id="business">
+  <div class="container">
+    <div class="row center-row"> <!-- Add the 'center-row' class here to target this specific row -->
+    <div class="col-sm-4 space_all">
+      <div class="business_3">
+      <div class="port effect-1">
+        <div class="ih-item square effect8">
+          <a href="hate_crimes.html">
+            <div class="img"><img src="img/hatespeech.png" alt="img"></div>
+            <div class="info">
+            <h3>Hate Speech Analysis</h3>
+            <p>Combines a custom dictionary with other text analysis methods to explore whether discussions of hate crimes have become more polarized.​​</p>
+            </div>
+        </a>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  </section>
  <section id="footer_bottom">
  <div class="container">
     <div class="col-sm-12">
 	 <div class="footer_bottom">
-    <p> © 2024 CSPAN Rhetoric. Designed by Jesus Gonzalez</a></p>
+		<p>Designed by Jesus Gonzalez</a></p>
   </div>
 	</div>
   </div>
