@@ -72,7 +72,7 @@
   <div class="row">
    <div class="about_1">
     <h2>Methodology</h2>
-	<p>This study involves cleaning and processing textual data, followed by applying three different sentiment analysis methods: TextBlob, Vader, and OpenAI models. These tools are used to analyze congressional rhetoric on immigration and inflation during both the Biden and Trump presidencies. By using a combination of these methods, we can capture a more comprehensive view of the sentiment in political discourse, 
+	<p>This study involves cleaning and processing textual data, followed by applying three different sentiment analysis methods: Dictionary, Vader, and OpenAI models. These tools are used to analyze congressional rhetoric on immigration and inflation during both the Biden and Trump presidencies. By using a combination of these methods, we can capture a more comprehensive view of the sentiment in political discourse, 
     providing deeper insights into how language around these topics may have evolved over time and how it potentially reflects or influences public opinion and behavior.​​</p>
    </div>
    <div class="col-sm-12 pull clearfix space_all">
@@ -82,9 +82,9 @@
             <div id="plot"></div>
         </div>
         <div class="about_inner_1" id="textBox">
-          <h2>TextBlob</h2>
+          <h2>Dictionary</h2>
           <ul style="list-style-type: disc; font-size: 20px;">
-              <li>This graph shows the results of a sentiment analysis using TextBlob, which evaluates the polarity and subjectivity of text related to different political topics.</li>
+              <li>This graph shows the results of a sentiment analysis using Dictionary, which evaluates the polarity and subjectivity of text related to different political topics.</li>
               <li><strong>Polarity</strong> measures the sentiment’s intensity, ranging from -1 (negative) to +1 (positive).</li>
               <li><strong>Subjectivity</strong> gauges how subjective (opinion-based) or objective (fact-based) the text is, with scores ranging from 0 (objective) to 1 (subjective).</li>
           </ul>
@@ -114,7 +114,7 @@
   d3.csv("melted_data.csv").then(function(data) {
     // Create the violin plot using Plotly and D3.js
     var layout = {
-      title: "Textblob Sentiment Analysis",
+      title: "Dictionary Sentiment Analysis",
       xaxis: {
         title: "Analysis Type",
         automargin: true, // Automatically adjust margin to fit labels
